@@ -1,129 +1,126 @@
-const COMMANDS = [
-  {
-    command: "about",
-    description: "About Me",
-  },
-  {
-    command: "education",
-    description: "My Education",
-  },
-  {
-    command: "skills",
-    description: "My Tech Skills",
-  },
-  {
-    command: "projects",
-    description: "My Tech Projects",
-  },
-  {
-    command: "resume",
-    description: "My Resume",
-  },
-  {
-    command: "contact",
-    description: "Contact Me",
-  },
-  {
-    command: "blog",
-    description: "Visit my blog",
-  },
-  {
-    command: "youtube",
-    description: "Visit my youtube channel (@livecode247)",
-  },
-  {
-    command:
-      // 'clear <span style="color: var(--primary)">(Ctrl+L shortcut)</span>',
-      "clear",
-    description: "Clear terminal",
-  },
-];
-
-const getProjects = async () => {
-  const projects = await (await fetch("/api/projects")).json();
-  const projectHTML =
-    `<h3>My Projects (You can scroll)</h3>` +
-    projects
-      .map(
-        (project) => `<div class="command">
-        <a href="${project.link}" target="_blank"><b class="command">${
-          project.name
-        }</b></a> - <b>${project.stack.join(", ")}</b>
-        <p class="meaning">${project.description}</p>
-      </div>`
-      )
-      .join("");
-  return projectHTML;
-};
-
-const getContacts = async () => {
-  const contactMediums = await (await fetch("/api/contacts")).json();
-  return contactMediums
-    .map(
-      (contact) => `<div style="display: flex; justify-content: space-between;">
-      <p style="font-size: 15px">${contact.medium}</p>
-      <a class="meaning" href="${contact.link}" target="_blank">${contact.username}</a>
-    </div>`
-    )
-    .join("");
-};
-
 export const CONTENTS = {
-  help: () =>
-    COMMANDS.map(
-      (command) => `<div style="display: flex; justify-content: space-between;">
-        <p style="font-size: 15px">${command.command}</p>
-        <p>${command.description}</p>
-      </div>`
-    ).join("") +
-    `<br />
-      <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span></div>`,
-  about: () => `My name is Kavin. I am ${getAge(
-    "December 25, 2005"
-  )} and I\'m a fullstack web developer
-    <br/><br/>
-    I love coding in Javascript, Typescript and Python, and have worked with frameworks like ReactJS, VueJS, Express, and Django. I currently use NextJS, Laravel, and NodeJS in a lot of my projects.
-    <br /><br />
-    I am a former President of <a href="https://exunclan.com" target="_blank">Exun Clan</a> ('22-23). I am a freshman at <a href="https://uwaterloo.ca/content/home" target="_blank">University of Waterloo</a>.
+  about: () =>
+    "Hello! I'm Ahmadh Hassan, a student at Rutgers University pursuing degrees in Electrical Engineering, Mathematics, and Applied Physics. I'm passionate about space technology, quantum computing, and building hardware systems from scratch.",
+
+  education: () =>
+    `<strong>Rutgers University-New Brunswick</strong>, New Brunswick, NJ
     <br />
-    I am also the Chapter Officer at the <a href="https://new-delhi-space-society.github.io" target="_blank">New Delhi Space Society</a>, a chapter of the <a href="https://space.nss.org" target="_blank">National Space Society</a>. I am a core maintainer of <a href="https://typewind.vercel.app" target="_new">Typewind</a>
-  `,
-  education:
-    () => `I am a high school graduate from <a href="https://dpsrkp.net" target="_blank">Delhi Public School, R.K. Puram</a> and a freshman at <a href="https://uwaterloo.ca/content/home" target="_blank">University of Waterloo</a>.`,
-  skills: () => `
-  I am experienced with Javascript, Typescript and Python and the web technologies dominating at the time:<br />
-  <div class="skill"><b>core</b>: HTML, CSS, Node.js and PHP<br /></div>
-  <div class="skill"><b>frameworks</b>: React, NextJS, Django, Express and Laravel<br /></div>
-  <div class="skill"><b>database</b>: MongoDB, PostgreSQL, MySQL, and SQLite<br /></div>
-  I also have knowledge of basic shell scripting and my dotfiles can be found <a href="https://github.com/kavinvalli/.dotfiles" target="_blank">here</a>.
-<br /><br />
-  I also have experience with Mobile Development with Flutter.
-  `,
-  projects: getProjects,
-  contact: getContacts,
-  resume: () => {
-    window.open("https://kavin.me/resume.pdf", "_blank");
-    return "";
-  },
-  error: (input) =>
-    `<div class="help-command">sh: Unknown command: ${input}</div><div class="help-command">See \`help\` for info`,
-  blog: () => {
-    window.open("https://livecode247.com", "_blank");
-    return "";
-  },
-  youtube: () => {
-    window.open("https://youtube.com/@livecode247", "_blank");
-    return "";
-  },
+    Pursuing B.S in Electrical Engineering, Mathematics, & Applied Physics (Expected May 2027)
+    <br />
+    GPA: 3.8/4.0`,
+
+  experience: () =>
+    `<ul>
+      <li>
+        <strong>NASA via NJSGC</strong> - Electronics & Power Intern (June 2024 - August 2024)
+        <ul>
+          <li>Designed and optimized electrical systems for a 6U CubeSat, including power budget redesign (+110% power generation)</li>
+          <li>Collaborated on PCB design for CubeSat components, ensuring compliance with system-level validation standards</li>
+          <li>Managed construction and implementation of Thermal Control System</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Device-independent Quantum Key Distribution Research (DI-QKD)</strong> - Undergraduate Research Assistant (June 2024 - August 2024)
+        <ul>
+          <li>Researched untrustable scenarios focusing on vulnerabilities in quantum communication protocols</li>
+          <li>Modeled the CHSH game using Qiskit and Python to simulate quantum entanglement</li>
+        </ul>
+      </li>
+    </ul>`,
+
+  skills: () =>
+    `<ul>
+      <li>Hardware Design: PCB Design, KiCad, Circuit Board Prototyping</li>
+      <li>Programming: Python, C++, VHDL, Verilog, PyTorch</li>
+      <li>Quantum Computing: Qiskit, Quantum Algorithms</li>
+      <li>Engineering Tools: Oscilloscopes, STK, Arduino</li>
+      <li>Machine Learning: CNNs, Data Augmentation</li>
+    </ul>`,
+
+  projects: () =>
+    `<ul>
+      <li>
+        <strong>Simple As Possible Transistor-Transistor-Logic(TTL) Computer</strong> (March 2025 - Present)
+        <ul>
+          <li>Designed and implemented a central processing unit (CPU) from scratch on custom designed circuit boards</li>
+          <li>Built custom TTL computer based on the SAP-Plus architecture using KiCad</li>
+        </ul>
+      </li>
+      <li>
+        <strong>MNIST Handwriting Recognition Machine Learning Algorithm</strong> (January 2025)
+        <ul>
+          <li>Developed a Convolutional Neural Network (CNN) using PyTorch to analyze the MNIST dataset with 42,000 samples achieving an accuracy of 99.8%</li>
+          <li>Optimized the model by implementing data augmentation techniques</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Retro Handheld Gaming Device</strong> (May 2024)
+        <ul>
+          <li>Designed and assembled a handheld gaming device from initiation, incorporating a microcontroller to run games like Tetris and Snake</li>
+          <li>Soldered components, including a 7-segment display and tactile buttons</li>
+        </ul>
+      </li>
+    </ul>`,
+
+  leadership: () =>
+    `<ul>
+      <li>
+        <strong>Space Technology Association at Rutgers</strong> - Power Team Lead (September 2023 - Present)
+        <ul>
+          <li>Managing a team of 10 to optimize electronics efficiency for a satellite</li>
+          <li>Investigating inhibit systems by prototyping and simulating in VHDL and Verilog</li>
+          <li>Incorporated attitude parameters into an STK model, increasing power generation from 12W to 20W</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Rutgers University Quantum Computing Group</strong> - President/Co-Founder (May 2024 - Present)
+        <ul>
+          <li>Founded and led a student organization focused on quantum computing, growing membership to 70+ students</li>
+          <li>Organized workshops and lectures to educate members and the public on quantum computing fundamentals</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Rutgers Institute of Electrical and Electronics Engineers (IEEE)</strong> - Shadowing Executive Board (January 2024 - Present)
+        <ul>
+          <li>Developed hands-on workshops such as a Macropad design workshop</li>
+          <li>Gained hands-on experience in using oscilloscopes, C++ programming, and arduino</li>
+          <li>Worked with PCB design and fabrication</li>
+        </ul>
+      </li>
+    </ul>`,
+
+  contact: () =>
+    `<ul>
+      <li>GitHub: <a href="https://github.com/Ahmadh1231" target="_blank">Ahmadh1231</a></li>
+      <li>Email: <a href="mailto:ahmadhhassan05@gmail.com">ahmadhhassan05@gmail.com</a></li>
+    </ul>`,
+
+  resume: () =>
+    `You can view my resume <a href="YOUR_RESUME_URL_HERE" target="_blank">here</a>`,
+
+  help: () =>
+    `Available commands:
+    <br />
+    <span class="command">about</span> - Learn about me
+    <br />
+    <span class="command">education</span> - My educational background
+    <br />
+    <span class="command">experience</span> - My professional experience
+    <br />
+    <span class="command">skills</span> - Technologies I work with
+    <br />
+    <span class="command">projects</span> - Things I've built
+    <br />
+    <span class="command">leadership</span> - My leadership experiences
+    <br />
+    <span class="command">contact</span> - How to reach me
+    <br />
+    <span class="command">resume</span> - View my resume
+    <br />
+    <span class="command">help</span> - See this list again
+    <br />
+    <span class="command">clear</span> - Clear the terminal`,
+
+  error: (command) =>
+    `Command not found: ${command}. Type 'help' to see the available commands.`,
 };
-
-function getAge(dateString) {
-  const today = new Date();
-  const birthDate = new Date(dateString);
-
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
-
-  return age;
-}
