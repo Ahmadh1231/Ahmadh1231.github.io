@@ -3,22 +3,17 @@ export async function GET(request) {
     {
       medium: "github",
       username: "kavinvalli",
-      link: "https://github.com/kavinvalli",
+      link: "https://github.com/ahmadh1231",
     },
     {
       medium: "email",
-      username: "mail@kavin.me",
-      link: "mailto:mail@kavin.me",
-    },
-    {
-      medium: "facebook",
-      username: "kavin.valli.25",
-      link: "https://www.facebook.com/kavin.valli.25/",
+      username: "ahmadhhassan05@gmail.com",
+      link: "mailto:ahmadhhassan05@gmail.com",
     },
     {
       medium: "linkedin",
-      username: "kavinvalli",
-      link: "https://www.linkedin.com/in/kavinvalli/",
+      username: "ahmadhhassan",
+      link: "https://www.linkedin.com/in/ahmadhhassan/",
     },
   ];
 
