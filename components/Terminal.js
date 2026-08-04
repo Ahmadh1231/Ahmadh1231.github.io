@@ -1,50 +1,37 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { CONTENTS } from "../utils/commandHelper";
+import { useEffect, useRef, useState } from "react";
+import { COMMANDS, getCommandResult } from "../utils/commandHelper";
 import Command from "./Command";
 import styles from "./Terminal.module.css";
 
 export default function Terminal() {
-  const [commands, setCommands] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const terminalRef = useRef(null);
+  const [history, setHistory] = useState([]);
+  const inputRef = useRef(null);
+  const outputRef = useRef(null);
 
-  const escapeHTML = (str) =>
-    str
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  const addCommand = async (command) => {
-    let output;
-    setLoading(true);
-    setCommands([...commands, { command, output: "Loading..." }]);
-    if (`${command}` in CONTENTS) {
-      output = await CONTENTS[`${command}`]();
-    } else if (command === "clear") {
-      setLoading(false);
-      return setCommands([]);
-    } else {
-      output = CONTENTS.error(escapeHTML(command));
-    }
-
-    setLoading(false);
-    setCommands([...commands.slice(0, commands.length), { command, output }]);
-    if (terminalRef) {
-      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
-    }
+  const run = (rawCommand) => {
+    const command = String(rawCommand).trim().toLowerCase().replace(/\s+/g, " ");
+    if (!command) return;
+    if (command === "clear") { setHistory([]); return; }
+    setHistory((current) => [...current, { command, result: getCommandResult(command) }]);
   };
 
+  useEffect(() => { outputRef.current?.scrollTo({ top: outputRef.current.scrollHeight, behavior: "smooth" }); }, [history]);
+
   return (
-    <div className={styles.terminal} ref={terminalRef}>
-      {/* <Command command="help" output="Some very long text will go in here" /> */}
-      {commands.map(({ command, output }, index) => (
-        <Command command={command} output={output} key={index} />
-      ))}
-      {!loading && <Command onSubmit={(command) => addCommand(command)} />}
-    </div>
+    <section className={styles.shell} aria-label="Interactive portfolio terminal">
+      <div className={styles.titlebar}><span className={styles.dot} /><span className={styles.dot} /><span className={styles.dot} /><span className={styles.title}>portfolio.sh</span></div>
+      <div className={styles.body} ref={outputRef}>
+        <div className={styles.welcome}>
+          <p>Welcome. Explore Ahmadh&apos;s work with a command, or use the shortcuts below.</p>
+          <nav className={styles.commands} aria-label="Portfolio sections">
+            {COMMANDS.filter(({ name }) => name !== "clear").map(({ name, label }) => <button type="button" key={name} onClick={() => run(name)}>{label}</button>)}
+          </nav>
+        </div>
+        {history.map((entry, index) => <Command key={`${entry.command}-${index}`} {...entry} />)}
+        <Command onSubmit={run} inputRef={inputRef} />
+      </div>
+    </section>
   );
 }

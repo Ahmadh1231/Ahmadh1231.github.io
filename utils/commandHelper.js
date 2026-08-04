@@ -1,126 +1,32 @@
-export const CONTENTS = {
-  about: () =>
-    "Hello! I'm Ahmadh Hassan, a student at Rutgers University pursuing degrees in Electrical Engineering, Mathematics, and Applied Physics. I'm passionate about space technology, quantum computing, and building hardware systems from scratch.",
+const link = (label, href, external = true) => ({ label, href, external });
 
-  education: () =>
-    `<strong>Rutgers University-New Brunswick</strong>, New Brunswick, NJ
-    <br />
-    Pursuing B.S in Electrical Engineering, Mathematics, & Applied Physics (Expected May 2027)
-    <br />
-    GPA: 3.8/4.0`,
+export const COMMANDS = [
+  { name: "about", label: "about" }, { name: "experience", label: "experience" }, { name: "research", label: "research / projects" },
+  { name: "education", label: "education" }, { name: "skills", label: "skills" }, { name: "leadership", label: "leadership" },
+  { name: "contact", label: "contact" }, { name: "resume", label: "resume" }, { name: "help", label: "help" }, { name: "clear", label: "clear" },
+];
 
-  experience: () =>
-    `<ul>
-      <li>
-        <strong>NASA via NJSGC</strong> - Electronics & Power Intern (June 2024 - August 2024)
-        <ul>
-          <li>Designed and optimized electrical systems for a 6U CubeSat, including power budget redesign (+110% power generation)</li>
-          <li>Collaborated on PCB design for CubeSat components, ensuring compliance with system-level validation standards</li>
-          <li>Managed construction and implementation of Thermal Control System</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Device-independent Quantum Key Distribution Research (DI-QKD)</strong> - Undergraduate Research Assistant (June 2024 - August 2024)
-        <ul>
-          <li>Researched untrustable scenarios focusing on vulnerabilities in quantum communication protocols</li>
-          <li>Modeled the CHSH game using Qiskit and Python to simulate quantum entanglement</li>
-        </ul>
-      </li>
-    </ul>`,
-
-  skills: () =>
-    `<ul>
-      <li>Hardware Design: PCB Design, KiCad, Circuit Board Prototyping</li>
-      <li>Programming: Python, C++, VHDL, Verilog, PyTorch</li>
-      <li>Quantum Computing: Qiskit, Quantum Algorithms</li>
-      <li>Engineering Tools: Oscilloscopes, STK, Arduino</li>
-      <li>Machine Learning: CNNs, Data Augmentation</li>
-    </ul>`,
-
-  projects: () =>
-    `<ul>
-      <li>
-        <strong>Simple As Possible Transistor-Transistor-Logic(TTL) Computer</strong> (March 2025 - Present)
-        <ul>
-          <li>Designed and implemented a central processing unit (CPU) from scratch on custom designed circuit boards</li>
-          <li>Built custom TTL computer based on the SAP-Plus architecture using KiCad</li>
-        </ul>
-      </li>
-      <li>
-        <strong>MNIST Handwriting Recognition Machine Learning Algorithm</strong> (January 2025)
-        <ul>
-          <li>Developed a Convolutional Neural Network (CNN) using PyTorch to analyze the MNIST dataset with 42,000 samples achieving an accuracy of 99.8%</li>
-          <li>Optimized the model by implementing data augmentation techniques</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Retro Handheld Gaming Device</strong> (May 2024)
-        <ul>
-          <li>Designed and assembled a handheld gaming device from initiation, incorporating a microcontroller to run games like Tetris and Snake</li>
-          <li>Soldered components, including a 7-segment display and tactile buttons</li>
-        </ul>
-      </li>
-    </ul>`,
-
-  leadership: () =>
-    `<ul>
-      <li>
-        <strong>Space Technology Association at Rutgers</strong> - Power Team Lead (September 2023 - Present)
-        <ul>
-          <li>Managing a team of 10 to optimize electronics efficiency for a satellite</li>
-          <li>Investigating inhibit systems by prototyping and simulating in VHDL and Verilog</li>
-          <li>Incorporated attitude parameters into an STK model, increasing power generation from 12W to 20W</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Rutgers University Quantum Computing Group</strong> - President/Co-Founder (May 2024 - Present)
-        <ul>
-          <li>Founded and led a student organization focused on quantum computing, growing membership to 70+ students</li>
-          <li>Organized workshops and lectures to educate members and the public on quantum computing fundamentals</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Rutgers Institute of Electrical and Electronics Engineers (IEEE)</strong> - Shadowing Executive Board (January 2024 - Present)
-        <ul>
-          <li>Developed hands-on workshops such as a Macropad design workshop</li>
-          <li>Gained hands-on experience in using oscilloscopes, C++ programming, and arduino</li>
-          <li>Worked with PCB design and fabrication</li>
-        </ul>
-      </li>
-    </ul>`,
-
-  contact: () =>
-    `<ul>
-      <li>GitHub: <a href="https://github.com/Ahmadh1231" target="_blank">Ahmadh1231</a></li>
-      <li>Email: <a href="mailto:ahmadhhassan05@gmail.com">ahmadhhassan05@gmail.com</a></li>
-    </ul>`,
-
-  resume: () =>
-    `You can view my resume <a href="YOUR_RESUME_URL_HERE" target="_blank">here</a>`,
-
-  help: () =>
-    `Available commands:
-    <br />
-    <span class="command">about</span> - Learn about me
-    <br />
-    <span class="command">education</span> - My educational background
-    <br />
-    <span class="command">experience</span> - My professional experience
-    <br />
-    <span class="command">skills</span> - Technologies I work with
-    <br />
-    <span class="command">projects</span> - Things I've built
-    <br />
-    <span class="command">leadership</span> - My leadership experiences
-    <br />
-    <span class="command">contact</span> - How to reach me
-    <br />
-    <span class="command">resume</span> - View my resume
-    <br />
-    <span class="command">help</span> - See this list again
-    <br />
-    <span class="command">clear</span> - Clear the terminal`,
-
-  error: (command) =>
-    `Command not found: ${command}. Type 'help' to see the available commands.`,
+const results = {
+  about: { title: "about", intro: "I am an electrical and computer engineering, applied physics, and mathematics student at Rutgers University-New Brunswick. I build and study hardware at the intersection of quantum information, condensed matter, and space systems." },
+  experience: { title: "experience", items: [
+    { heading: "Argonne National Laboratory · Quantum Computing Research Intern · June–August 2026", text: "DOE SULI research on superconducting microwave resonators for electron-on-solid-neon devices, including HFSS eigenmode and driven-modal simulation, lithography-ready layouts, and materials characterization." },
+    { heading: "Condensed Matter Experiment Undergraduate Researcher · May 2025–present", text: "Honors thesis research on gated Eu₂Ir₂O₇ Hall-bar devices using cryogenic magnetotransport, nanofabrication, and data analysis." },
+    { heading: "NASA via NJSGC · Electronics & Power Intern · June–August 2024", text: "Worked on electrical systems, PCB integration, and thermal control for a 6U CubeSat." },
+  ] },
+  research: { title: "research / projects", items: [
+    { heading: "QResAudit", text: "A Python / PyAEDT / HFSS framework for reproducible electromagnetic simulation validation.", links: [link("View on GitHub", "https://github.com/Ahmadh1231/QResAudit")] },
+    { heading: "Device-independent QKD · June–August 2024", text: "Simulated CHSH games in Qiskit and Python while studying quantum communication protocols." },
+    { heading: "Selected topics", text: "Superconducting resonators · gated Eu₂Ir₂O₇ Hall-bar devices · MNIST CNN (99.8% reported accuracy) · renormalization groups in graphene." },
+  ] },
+  education: { title: "education", items: [{ heading: "Rutgers University-New Brunswick · New Brunswick, NJ", text: "B.S. Electrical & Computer Engineering · B.S. Applied Physics · B.S. Mathematics · Expected May 2027 · GPA 3.8 / 4.0" }] },
+  skills: { title: "skills", intro: "Python, C++, Qiskit, PyTorch, PyAEDT, HFSS, KiCad, PCB design, nanofabrication, cryogenic measurement, data analysis, VHDL, Verilog, and scientific computing." },
+  leadership: { title: "leadership", items: [
+    { heading: "Space Technology Association at Rutgers · Power Team Lead · September 2023–present", text: "Lead the Power Team developing electrical systems for space technology projects." },
+    { heading: "Rutgers University Quantum Computing Group · President / Co-Founder · May 2024–present", text: "Lead a student community exploring quantum computing through workshops, talks, and hands-on learning." },
+  ] },
+  contact: { title: "contact", intro: "The best way to reach me is by email. I am also active on GitHub and LinkedIn.", links: [link("ahmadhhassan05@gmail.com", "mailto:ahmadhhassan05@gmail.com", false), link("GitHub · Ahmadh1231", "https://github.com/Ahmadh1231"), link("LinkedIn · Ahmadh Hassan", "https://www.linkedin.com/in/ahmadhhassan/")] },
+  resume: { title: "resume", intro: "My current resume is available here.", links: [link("Open resume.pdf", "/resume.pdf", false)] },
+  help: { title: "help", intro: "Use a command to explore the portfolio. Buttons above are also keyboard accessible.", commands: COMMANDS.map(({ name }) => name) },
 };
+
+export function getCommandResult(command) { return results[command] || { title: "command not found", intro: `No portfolio section matches “${command}”. Try help to see the available commands.` }; }

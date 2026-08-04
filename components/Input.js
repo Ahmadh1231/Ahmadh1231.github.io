@@ -1,34 +1,28 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Input.module.css";
 
-export default function Input({ command, onSubmit }) {
-  const [_command, setCommand] = useState(command ? command : "");
+export default function Input({ command = "", onSubmit, inputRef }) {
+  const [value, setValue] = useState(command);
+  useEffect(() => { if (!command) inputRef?.current?.focus(); }, [command, inputRef]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setCommand("");
-    return onSubmit(_command);
-  };
+  const prompt = (
+    <span className={styles.label}>
+      <span className={styles.prompt}>λ</span>{" "}
+      <span className={styles.path}>~/ahmadh</span>{" "}
+      <span className={styles.arrow}>›</span>
+    </span>
+  );
+
+  if (command) {
+    return <div className={styles.form}>{prompt}<span className={styles.enteredCommand}>{command}</span></div>;
+  }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <label htmlFor="command">
-        <span style={{ color: "#ff9e64" }}>λ</span> ::{" "}
-        <span style={{ color: "var(--primary)" }}>~</span>{" "}
-        <span style={{ color: "var(--secondary)" }}>&gt;&gt;</span>
-      </label>
-
-      <input
-        type="text"
-        className={styles.input}
-        value={_command}
-        onChange={(e) => setCommand(e.target.value)}
-        disabled={command ? true : false}
-        ref={(input) => input && !command && input.focus()}
-        autoFocus={command === ""}
-      />
+    <form className={styles.form} onSubmit={(event) => { event.preventDefault(); onSubmit(value); setValue(""); }}>
+      <label htmlFor="terminal-command">{prompt}</label>
+      <input ref={inputRef} id="terminal-command" className={styles.input} value={value} onChange={(event) => setValue(event.target.value)} aria-label="Enter a portfolio command" autoComplete="off" spellCheck="false" />
     </form>
   );
 }

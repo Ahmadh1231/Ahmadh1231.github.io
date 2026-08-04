@@ -1,3 +1,3 @@
-export default function Output({ output }) {
-  return output ? <p dangerouslySetInnerHTML={{ __html: output }}></p> : <></>;
+export default function Output({ result }) {
+  return <div className="output" aria-live="polite">{result.title && <h2>{result.title}</h2>}{result.intro && <p>{result.intro}</p>}{result.items?.map((item) => <article className="item" key={item.heading}><h3>{item.heading}</h3><p>{item.text}</p>{item.links?.map((link) => <a key={link.label} href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined}>{link.label}</a>)}</article>)}{result.links?.map((link) => <p key={link.label}><a href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined}>{link.label}</a></p>)}{result.commands && <p className="command-list">{result.commands.join("  ·  ")}</p>}</div>;
 }
