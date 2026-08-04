@@ -9,9 +9,7 @@ export default function Input({ command = "", onSubmit, inputRef }) {
 
   const prompt = (
     <span className={styles.label}>
-      <span className={styles.prompt}>λ</span>{" "}
-      <span className={styles.path}>~/ahmadh</span>{" "}
-      <span className={styles.arrow}>›</span>
+      <span className={styles.prompt}>Ahmadh:$</span>
     </span>
   );
 
@@ -22,7 +20,7 @@ export default function Input({ command = "", onSubmit, inputRef }) {
   return (
     <form className={styles.form} onSubmit={(event) => { event.preventDefault(); onSubmit(value); setValue(""); }}>
       <label htmlFor="terminal-command">{prompt}</label>
-      <input ref={inputRef} id="terminal-command" className={styles.input} value={value} onChange={(event) => setValue(event.target.value)} aria-label="Enter a portfolio command" autoComplete="off" spellCheck="false" />
+      <input ref={inputRef} id="terminal-command" className={styles.input} value={value} onChange={(event) => setValue(event.target.value)} aria-label="Enter a portfolio command" autoComplete="off" spellCheck="false" placeholder="/help to list commands" />
     </form>
   );
 }

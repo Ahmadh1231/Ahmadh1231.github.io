@@ -26,7 +26,7 @@ const results = {
   ] },
   contact: { title: "contact", intro: "The best way to reach me is by email. I am also active on GitHub and LinkedIn.", links: [link("ahmadhhassan05@gmail.com", "mailto:ahmadhhassan05@gmail.com", false), link("GitHub · Ahmadh1231", "https://github.com/Ahmadh1231"), link("LinkedIn · Ahmadh Hassan", "https://www.linkedin.com/in/ahmadhhassan/")] },
   resume: { title: "resume", intro: "My current resume is available here.", links: [link("Open resume.pdf", "/resume.pdf", false)] },
-  help: { title: "help", intro: "Use a command to explore the portfolio. Buttons above are also keyboard accessible.", commands: COMMANDS.map(({ name }) => name) },
+  help: { title: "help", intro: "Type a command and press Enter.", commands: COMMANDS.map(({ name }) => `/${name}`) },
 };
 
-export function getCommandResult(command) { return results[command] || { title: "command not found", intro: `No portfolio section matches “${command}”. Try help to see the available commands.` }; }
+export function getCommandResult(command) { return results[command] || { title: "command not found", intro: `No portfolio section matches “/${command}”. Try /help to list the available commands.` }; }

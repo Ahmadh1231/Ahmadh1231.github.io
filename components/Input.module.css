@@ -1,6 +1,6 @@
-.form { display: flex; align-items: center; gap: .5rem; margin-top: 1.5rem; font: .88rem "Cascadia Code", "SFMono-Regular", Consolas, monospace; }
+.form { display: flex; align-items: center; gap: .65rem; font: .92rem "Cascadia Code", "SFMono-Regular", Consolas, monospace; }
 .label { white-space: nowrap; }
-.prompt { color: var(--orange); }.path { color: var(--green); }.arrow { color: var(--cyan); font-size: 1.25rem; }
-.input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); caret-color: var(--green); }
-.input:focus-visible { box-shadow: 0 2px 0 var(--green); }
+.prompt { color: var(--primary); }
+.input { width: 100%; min-width: 0; border: 0; outline: 0; padding: 0; background: transparent; color: var(--ink); caret-color: var(--ink); }
+.input::placeholder { color: rgba(255, 255, 255, .38); opacity: 1; }
 .enteredCommand { color: var(--ink); }

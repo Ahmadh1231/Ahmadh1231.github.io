@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { COMMANDS, getCommandResult } from "../utils/commandHelper";
+import { getCommandResult } from "../utils/commandHelper";
 import Command from "./Command";
 import styles from "./Terminal.module.css";
 
@@ -11,27 +11,29 @@ export default function Terminal() {
   const outputRef = useRef(null);
 
   const run = (rawCommand) => {
-    const command = String(rawCommand).trim().toLowerCase().replace(/\s+/g, " ");
-    if (!command) return;
-    if (command === "clear") { setHistory([]); return; }
-    setHistory((current) => [...current, { command, result: getCommandResult(command) }]);
+    const enteredCommand = String(rawCommand).trim().toLowerCase().replace(/\s+/g, " ");
+    if (!enteredCommand) return;
+
+    const hasSlash = enteredCommand.startsWith("/");
+    const command = hasSlash ? enteredCommand.slice(1) : enteredCommand;
+
+    if (hasSlash && command === "clear") { setHistory([]); return; }
+
+    const result = hasSlash
+      ? getCommandResult(command)
+      : { title: "command not found", intro: `Commands start with /. Try /help to list them.` };
+
+    setHistory((current) => [...current, { command: enteredCommand, result }]);
   };
 
   useEffect(() => { outputRef.current?.scrollTo({ top: outputRef.current.scrollHeight, behavior: "smooth" }); }, [history]);
 
   return (
-    <section className={styles.shell} aria-label="Interactive portfolio terminal">
-      <div className={styles.titlebar}><span className={styles.dot} /><span className={styles.dot} /><span className={styles.dot} /><span className={styles.title}>portfolio.sh</span></div>
+    <main className={styles.shell} aria-label="Interactive portfolio terminal" onClick={() => inputRef.current?.focus()}>
       <div className={styles.body} ref={outputRef}>
-        <div className={styles.welcome}>
-          <p>Welcome. Explore Ahmadh&apos;s work with a command, or use the shortcuts below.</p>
-          <nav className={styles.commands} aria-label="Portfolio sections">
-            {COMMANDS.filter(({ name }) => name !== "clear").map(({ name, label }) => <button type="button" key={name} onClick={() => run(name)}>{label}</button>)}
-          </nav>
-        </div>
         {history.map((entry, index) => <Command key={`${entry.command}-${index}`} {...entry} />)}
         <Command onSubmit={run} inputRef={inputRef} />
       </div>
-    </section>
+    </main>
   );
 }
