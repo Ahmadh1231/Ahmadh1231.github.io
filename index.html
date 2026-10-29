@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahmadh Hassan | Electrical &amp; Quantum Engineering</title>
+<meta name="description" content="Ahmadh Hassan is a Rutgers student and researcher working across superconducting resonators, quantum computing, and oxide-electronic devices.">
+<meta name="theme-color" content="#1a1b26">
+<meta property="og:title" content="Ahmadh Hassan | Electrical &amp; Quantum Engineering">
+<meta property="og:description" content="Research, projects, and contact information for Ahmadh Hassan.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1b26'/%3E%3Ctext x='16' y='22' font-family='Consolas,monospace' font-size='15' font-weight='700' text-anchor='middle' fill='%23bb9af7'%3E%24_%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main aria-label="Ahmadh Hassan portfolio, shown as a terminal session">
+
+<div class="cmd"><span class="prompt">Ahmadh:$</span>/help</div>
+<div class="output">
+  <h2>help</h2>
+  <p>Every command below has already run. Click one to jump to it.</p>
+  <p class="list"><a href="#about">/about</a> <a href="#experience">/experience</a> <a href="#research">/research</a> <a href="#capstone">/capstone</a> <a href="#projects">/projects</a> <a href="#education">/education</a> <a href="#skills">/skills</a> <a href="#leadership">/leadership</a> <a href="#contact">/contact</a> <a href="#resume">/resume</a></p>
+</div>
+
+<div class="cmd" id="about"><span class="prompt">Ahmadh:$</span>/about</div>
+<div class="output">
+  <h2>about</h2>
+  <p>I am an electrical and computer engineering, applied physics, and mathematics student at Rutgers University-New Brunswick. I study how a thin film becomes a working quantum or oxide-electronic device: how it is designed, simulated, laid out and checked.</p>
+</div>
+
+<div class="cmd" id="experience"><span class="prompt">Ahmadh:$</span>/experience</div>
+<div class="output">
+  <h2>experience</h2>
+  <div class="item">
+    <h3>Argonne National Laboratory &middot; Quantum Computing Research Intern &middot; June&ndash;August 2026</h3>
+    <p>DOE SULI research on superconducting microwave resonators for electron-on-solid-neon devices, including HFSS eigenmode and driven-modal simulation, lithography-ready layouts, and materials characterization. I rebuilt four published resonators from their papers and designed a fifth.</p>
+    <p>Frequencies landed. Quality factors did not: a paper rarely gives enough detail to rebuild coupling and loss. So I added an audit step. It rejected several of my own early models and retracted some of my Q values. The table says what each model shows and what it does not.</p>
+
+    <table>
+      <thead><tr><th>resonator</th><th>simulated vs paper</th><th>what it shows</th></tr></thead>
+      <tbody>
+        <tr><td>Parallel-plate</td><td>7.49999 vs 7.5 GHz</td><td>Frequency matched. Rebuilt with a coplanar-waveguide feed instead of the paper&rsquo;s 3D cavity. Layer alignment and loss still open.</td></tr>
+        <tr><td>Spiral</td><td>5.987 vs 6 GHz</td><td>Analytic, two-level-system and participation-ratio models reproduce the paper. The HFSS model fixes frequency only; its Q is unproven.</td></tr>
+        <tr><td>Interdigital capacitor</td><td>7.2198 vs 7.24 GHz</td><td>Fit by construction: the paper never dimensions the capacitor, so I solved finger count and spacing from the target. Coupling cannot be rebuilt from the paper.</td></tr>
+        <tr><td>Flip-chip spin resonator</td><td>not reproduced</td><td>My bare-stack model is far from the paper&rsquo;s 5.55 GHz and the coupling was far too weak. Kept for what it taught me about ports, moats and airbridges.</td></tr>
+        <tr><td>Fractal</td><td>not simulated</td><td>An original design with the physics taken from the literature. Layout only.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="figs">
+      <figure><img src="assets/img/idc-fields.webp" width="1800" height="591" loading="lazy" alt="Three colour maps of the interdigital capacitor resonator: electric field, magnetic field and surface current."><figcaption>Eigenmode fields of the interdigital capacitor (E, H, surface current).</figcaption></figure>
+      <figure><img src="assets/img/idc-convergence.webp" width="1800" height="725" loading="lazy" alt="Two plots: mesh element count growing over twenty adaptive passes, and frequency change falling below the 0.3 percent target."><figcaption>Mesh convergence over twenty adaptive passes.</figcaption></figure>
+      <figure><img src="assets/img/idc-layout.webp" width="1305" height="900" loading="lazy" alt="Layout of an interdigital capacitor with twelve fingers and a thin wire inductor."><figcaption>Interdigital capacitor: twelve fingers and a 5&nbsp;&micro;m wire.</figcaption></figure>
+      <figure><img src="assets/img/omega-variants.webp" width="1800" height="731" loading="lazy" alt="Two layout variants of a coplanar-waveguide resonator with a loop inductor."><figcaption>Layout variants of the flip-chip spin resonator.</figcaption></figure>
+      <figure><img src="assets/img/fractal-layout.webp" width="1425" height="900" loading="lazy" alt="Layout of a fractal resonator trunk with branching meander arms inside a ground-plane window."><figcaption>Fractal resonator, order&nbsp;3, 12.4&nbsp;mm total path.</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>Condensed Matter Experiment Undergraduate Researcher &middot; May 2025&ndash;present</h3>
+    <p>Honors thesis research on gated Eu<sub>2</sub>Ir<sub>2</sub>O<sub>7</sub> Hall-bar devices in Prof. Jak Chakhalian&rsquo;s group at Rutgers: nanofabrication layout, cryogenic magnetotransport and data analysis. See /research for what exists so far.</p>
+  </div>
+  <div class="item">
+    <h3>NASA via NJSGC &middot; Electronics &amp; Power Intern &middot; June&ndash;August 2024</h3>
+    <p>Worked on electrical systems, PCB integration, and thermal control.</p>
+  </div>
+</div>
+
+<div class="cmd" id="research"><span class="prompt">Ahmadh:$</span>/research</div>
+<div class="output">
+  <h2>research</h2>
+  <p>Chakhalian group, Rutgers Physics. I write parametric mask layouts, check them in black and white, and plan the measurements that would follow. Everything here is designed and verified on screen. None of it is a fabricated device yet.</p>
+
+  <table>
+    <thead><tr><th>project</th><th>status</th><th>note</th></tr></thead>
+    <tbody>
+      <tr><td>Fibonacci-etch silicon coupons</td><td>designed, not fabricated</td><td>Shallow-etch test chips whose line spacings follow Fibonacci words, order 4 to 11, inspired by Endo and Iye (PRB&nbsp;78, 085311). Etched topography for practising the maskless write, not a replica of their device.</td></tr>
+      <tr><td>Gated SrRuO<sub>3</sub> Hall bar</td><td>design</td><td>18&nbsp;nm film with a side gate for ionic-liquid gating. Two mask layers: one etches the film, one opens the liquid window.</td></tr>
+      <tr><td>Hall-bar generator, practice chips</td><td>layouts</td><td>Named layouts from a few parameters, with validation, plus practice chips on bare silicon to find the tool&rsquo;s resolution floor.</td></tr>
+      <tr><td>Eu<sub>2</sub>Ir<sub>2</sub>O<sub>7</sub> ionic gating</td><td>plan</td><td>Honors thesis plan: gate Hall bars with an ionic liquid and measure Rxx and Rxy against temperature and field. No gating data yet.</td></tr>
+      <tr><td>Angular magnetoresistance</td><td>preliminary</td><td>Reproducible notebook for a group dataset: forward and reverse sweeps, symmetry-restricted against exploratory harmonic fits. Single run.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="figs">
+    <figure><img src="assets/img/fibonacci-chip.webp" width="1490" height="1504" loading="lazy" alt="Black and white mask view of a 20 millimetre silicon chip with four sets of Fibonacci line patterns."><figcaption>Fibonacci coupon chip, mask view. Black is etched.</figcaption></figure>
+    <figure><img src="assets/img/fibonacci-detail.webp" width="1626" height="1800" loading="lazy" alt="One replicate set of Fibonacci line patterns, labelled M4 to M11."><figcaption>One replicate set, M4 to M11.</figcaption></figure>
+    <figure><img src="assets/img/sro-etch-bw.webp" width="1399" height="1361" loading="lazy" alt="Black and white etch mask of the gated Hall bar with contact pads and alignment marks."><figcaption>Gated Hall bar, etch layer.</figcaption></figure>
+    <figure><img src="assets/img/sro-composite.webp" width="1069" height="1053" loading="lazy" alt="Two-layer design of the gated Hall bar showing film, separator openings and side gate."><figcaption>Gated Hall bar, both layers.</figcaption></figure>
+    <figure><img src="assets/img/hallbar-library.webp" width="1566" height="1707" loading="lazy" alt="A generated Hall-bar layout with six contact leads and large pads."><figcaption>Generated Hall-bar layout.</figcaption></figure>
+    <figure><img src="assets/img/hallbar-practice.webp" width="1735" height="1785" loading="lazy" alt="A practice chip with many small Hall-bar blocks at scaled feature sizes."><figcaption>Lithography practice chip.</figcaption></figure>
+  </div>
+</div>
+
+<div class="cmd" id="capstone"><span class="prompt">Ahmadh:$</span>/capstone</div>
+<div class="output">
+  <h2>capstone</h2>
+  <p>Rutgers ECE. I lead a team building a tunable, neuron-like device from a correlated oxide, advised by Prof. Shriram Ramanathan with Prof. Jak Chakhalian as co-advisor. The aim is one device whose response can be tuned the way a synapse is. We are at the design stage and the choice of material is still open.</p>
+</div>
+
+<div class="cmd" id="projects"><span class="prompt">Ahmadh:$</span>/projects</div>
+<div class="output">
+  <h2>projects</h2>
+  <table>
+    <thead><tr><th>project</th><th>stack</th><th>note</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://github.com/Ahmadh1231/QResAudit">QResAudit</a></td><td>Python, PyAEDT</td><td>Packages simulation and measurement data into checksummed, auditable bundles. In development; I do not yet claim its HFSS export is validated.</td></tr>
+      <tr><td>Command Center</td><td>Electron</td><td>A desktop app I use to keep research tasks, notes and deadlines in one place.</td></tr>
+      <tr><td>Fly-by-wire</td><td>Python, ML</td><td>A shared project learning wiring rules from the fruit-fly connectome. Early. My first model underfit and we corrected it openly.</td></tr>
+      <tr><td>Device-independent QKD</td><td>Qiskit</td><td>Simulated CHSH games while studying quantum communication protocols. June&ndash;August 2024.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="cmd" id="education"><span class="prompt">Ahmadh:$</span>/education</div>
+<div class="output">
+  <h2>education</h2>
+  <div class="item">
+    <h3>Rutgers University-New Brunswick &middot; New Brunswick, NJ</h3>
+    <p>B.S. Electrical &amp; Computer Engineering &middot; B.S. Applied Physics &middot; B.S. Mathematics &middot; Expected May 2027 &middot; GPA 3.8 / 4.0</p>
+  </div>
+</div>
+
+<div class="cmd" id="skills"><span class="prompt">Ahmadh:$</span>/skills</div>
+<div class="output">
+  <h2>skills</h2>
+  <p>Python, C++, Qiskit, PyTorch, PyAEDT, HFSS, KiCad, PCB design, nanofabrication layout, cryogenic measurement, data analysis, VHDL, Verilog, and scientific computing.</p>
+</div>
+
+<div class="cmd" id="leadership"><span class="prompt">Ahmadh:$</span>/leadership</div>
+<div class="output">
+  <h2>leadership</h2>
+  <div class="item">
+    <h3>Space Technology Association at Rutgers &middot; Power Team Lead &middot; September 2023&ndash;present</h3>
+    <p>Lead the Power Team developing electrical systems for space technology projects.</p>
+  </div>
+  <div class="item">
+    <h3>Rutgers University Quantum Computing Group &middot; President / Co-Founder &middot; May 2024&ndash;present</h3>
+    <p>Lead a student community exploring quantum computing through workshops, talks, and hands-on learning.</p>
+  </div>
+</div>
+
+<div class="cmd" id="contact"><span class="prompt">Ahmadh:$</span>/contact</div>
+<div class="output">
+  <h2>contact</h2>
+  <p>The best way to reach me is by email. I am also active on GitHub and LinkedIn.</p>
+  <a href="mailto:ahmadhhassan05@gmail.com">ahmadhhassan05@gmail.com</a>
+  <a href="https://github.com/Ahmadh1231">GitHub &middot; Ahmadh1231</a>
+  <a href="https://www.linkedin.com/in/ahmadhhassan/">LinkedIn &middot; Ahmadh Hassan</a>
+</div>
+
+<div class="cmd" id="resume"><span class="prompt">Ahmadh:$</span>/resume</div>
+<div class="output">
+  <h2>resume</h2>
+  <p>My current resume is available here.</p>
+  <a href="resume.pdf">Open resume.pdf</a>
+</div>
+
+<div class="cmd"><span class="prompt">Ahmadh:$</span><span class="cursor" aria-hidden="true"></span></div>
+
+</main>
+</body>
+</html>

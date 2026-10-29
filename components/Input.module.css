@@ -1,6 +1,0 @@
-.form { display: flex; align-items: center; gap: .65rem; font: .92rem "Cascadia Code", "SFMono-Regular", Consolas, monospace; }
-.label { white-space: nowrap; }
-.prompt { color: var(--primary); }
-.input { width: 100%; min-width: 0; border: 0; outline: 0; padding: 0; background: transparent; color: var(--ink); caret-color: var(--ink); }
-.input::placeholder { color: rgba(255, 255, 255, .38); opacity: 1; }
-.enteredCommand { color: var(--ink); }

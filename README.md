@@ -1,23 +1,17 @@
 # Ahmadh Hassan — portfolio
 
-Terminal-inspired static portfolio for Ahmadh Hassan, built with Next.js and React and exported for GitHub Pages.
+A static portfolio: plain HTML, CSS and a little JavaScript. No build step.
 
-## Local development
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000). The portfolio can be explored with the visible command controls or by typing `help`, `about`, `experience`, `research`, `education`, `skills`, `leadership`, `contact`, `resume`, or `clear` into the terminal.
-
-## Verification and production build
+## Preview
 
 ```bash
-npm run lint
-npm run build
+python -m http.server 8000
 ```
 
-The build writes a static export to `out`. GitHub Actions runs on pushes to `master` and publishes that directory to `gh-pages`.
+Open http://localhost:8000.
 
-The public resume is expected at `public/resume.pdf`, which is available at `/resume.pdf` after export.
+## Deploy
+
+GitHub Actions copies `index.html`, `style.css`, `script.js`, `resume.pdf` and `assets/` into `_site` on each push to `master` and publishes it to `gh-pages`.
+
+The previous terminal-style Next.js version is in git history on `master` before the redesign.
